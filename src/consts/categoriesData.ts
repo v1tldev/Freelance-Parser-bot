@@ -1,0 +1,41 @@
+export interface Subcategory {
+    name: string;
+    path: string;
+  }
+  
+  export const devSubcategories: Subcategory[] = [
+    { name: "Парсеры", path: "/categories/script-programming/parsery" },
+    { name: "Чат-боты", path: "/categories/script-programming/chat-boty" },
+    { name: "Скрипты", path: "/categories/script-programming/skripty" },
+    { name: "Telegram Mini Apps", path: "/categories/script-programming/telegram-mini-apps" },
+    { name: "ИИ-агенты", path: "/categories/script-programming/ii-agenty" },
+    { name: "ИИ-боты", path: "/categories/script-programming/ii-boty" },
+    { name: "Машинное обучение", path: "/categories/script-programming/mashinnoe-obuchenie" },
+    { name: "Интернет вещей (IoT)", path: "/categories/script-programming/internet-veshchey-iot" },
+    { name: "Десктоп программирование", path: "/categories/software" },
+    { name: "1С", path: "/categories/software/1s" },
+    { name: "Макросы для Office", path: "/categories/software/office" },
+    { name: "Готовые программы", path: "/categories/software/drugie-gotovie" },
+    { name: "Программы на заказ", path: "/categories/software/drugie-na-zakaz" },
+    { name: "iOS", path: "/categories/mobile-apps/ios" },
+    { name: "Android", path: "/categories/mobile-apps/android" },
+    { name: "Разработка игр", path: "/categories/game-dev/razrabotka-igr" },
+    { name: "Игровой сервер", path: "/categories/game-dev/igrovoy-server" },
+    { name: "Готовые игры", path: "/categories/game-dev/gotovie-igry" },
+    { name: "Администрирование сервера", path: "/categories/server-administration/administrirovanie-servera" },
+    { name: "Домены", path: "/categories/server-administration/domeny" },
+    { name: "Хостинг", path: "/categories/server-administration/khosting" },
+    { name: "Верстка по макету", path: "/categories/frontend/verstka-po-dizayn-maketu" },
+    { name: "Доработка и адаптация верстки", path: "/categories/frontend/dorabotka-verstki" },
+    { name: "Доработка сайта", path: "/categories/website-repair/dorabotka-sayta" },
+    { name: "Настройка сайта", path: "/categories/website-repair/nastroyka-sayta" },
+    { name: "Защита и лечение сайта", path: "/categories/website-repair/zashchita-i-lechenie-sayta" },
+    { name: "Ускорение сайта", path: "/categories/website-repair/uskorenie-sayta" },
+    { name: "Плагины и темы", path: "/categories/website-repair/plaginy-moduli-i-temy" },
+    { name: "Исправление ошибок", path: "/categories/website-repair/ispravlenie-oshibok" },
+    { name: "Новый сайт", path: "/categories/website-development/noviy-sayt" },
+    { name: "Копия сайта", path: "/categories/website-development/kopiya-sushchestvuyushchego" },
+    { name: "Юзабилити-аудит", path: "/categories/usability-testing/yuzabiliti-audit" },
+    { name: "Тестирование на ошибки", path: "/categories/usability-testing/testirovanie-na-oshibki" },
+    { name: "Компьютерная и IT помощь", path: "/categories/usability-testing/kompyuternaya-i-it-pomoshch" },
+  ];
