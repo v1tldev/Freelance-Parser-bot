@@ -1,6 +1,5 @@
 import { bot } from "./bot";
 import { getSubcategoriesKeyboard } from "./keyboards/categoryKeyboard";
-import { startKeyboard } from "./keyboards/startKeyboard";
 import { parseAllKworks } from "./services/parser";
 import { getAnalysisResult } from "./services/analitics";
 import { InputFile } from 'grammy';
@@ -12,7 +11,7 @@ bot.start({onStart: () => {
 
 bot.callbackQuery(/^analyze:(.+)$/, async (ctx) => {
   const pathByCategoryId = new Map(devSubcategories.map(c => [c.id, c.path]));
-
+  await ctx.answerCallbackQuery();
   const id = ctx.match[1];
   const path = pathByCategoryId.get(id);
   if (!path) {
@@ -20,10 +19,21 @@ bot.callbackQuery(/^analyze:(.+)$/, async (ctx) => {
     return;
   }
   const fullUrl = `${process.env.BASE_URL}${path}`;
-
-  await ctx.answerCallbackQuery();
   
-  const frames = ['[     ]', '[=    ]', '[==   ]', '[===  ]', '[==== ]', '[=====]'];
+  const frames = [
+    '[          ]',
+    '[=         ]',
+    '[==        ]',
+    '[===       ]',
+    '[====      ]',
+    '[=====     ]',
+    '[======    ]',
+    '[=======   ]',
+    '[========  ]',
+    '[========= ]',
+    '[==========]'
+  ];
+
   let frameIndex = 0;
   const animMsg = await ctx.reply(frames[frameIndex]);
   const interval = setInterval(async () => {
@@ -52,14 +62,8 @@ bot.callbackQuery(/^analyze:(.+)$/, async (ctx) => {
 
 bot.callbackQuery(/^page:(\d+)$/, async (ctx) => {
   const page = parseInt(ctx.match[1]);
-  await ctx.editMessageText("🔍 Выберите категорию из IT-разработки:", {
+  await ctx.answerCallbackQuery();
+  await ctx.api.editMessageText(ctx.chat!.id, ctx.callbackQuery.message!.message_id, "🔍 Выберите категорию из IT-разработки:", {
     reply_markup: getSubcategoriesKeyboard(page)
   });
-  await ctx.answerCallbackQuery();
-});
-
-bot.callbackQuery("back_to_start", async (ctx) => {
-  await ctx.answerCallbackQuery();
-  await ctx.reply("Главное меню", {reply_markup: startKeyboard});
-  await ctx.deleteMessage();
 });

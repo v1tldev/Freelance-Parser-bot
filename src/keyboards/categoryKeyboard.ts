@@ -31,7 +31,5 @@ export function getSubcategoriesKeyboard(page: number = 0): InlineKeyboard {
     keyboard.row(...navRow);
   }
   
-  keyboard.row().text("Назад в главное меню", "back_to_start");
-  
   return keyboard;
 }
