@@ -10,7 +10,8 @@ bot.start({onStart: () => {
 }})
 
 bot.callbackQuery(/^analyze:(.+)$/, async (ctx) => {
-  const url = ctx.match[1];
+  const path = ctx.match[1];
+  const url = `${process.env.BASE_URL}${path}`;
   await ctx.answerCallbackQuery();
   
   const frames = ['[     ]', '[=    ]', '[==   ]', '[===  ]', '[==== ]', '[=====]'];
