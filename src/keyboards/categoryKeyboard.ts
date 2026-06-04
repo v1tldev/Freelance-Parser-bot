@@ -14,7 +14,7 @@ export function getSubcategoriesKeyboard(page: number = 0): InlineKeyboard {
   for (let i = 0; i < pageItems.length; i += BUTTONS_PER_ROW) {
     const rowItems = pageItems.slice(i, i + BUTTONS_PER_ROW);
     const rowButtons = rowItems.map(item => 
-      InlineKeyboard.text(item.name, `analyze:${item.path}`)
+      InlineKeyboard.text(item.name, `analyze:${item.id}`)
     );
     keyboard.row(...rowButtons);
   }

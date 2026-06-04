@@ -4,14 +4,23 @@ import { startKeyboard } from "./keyboards/startKeyboard";
 import { parseAllKworks } from "./services/parser";
 import { getAnalysisResult } from "./services/analitics";
 import { InputFile } from 'grammy';
+import { devSubcategories } from "./consts/categoriesData";
 
 bot.start({onStart: () => {
     console.log("Bot started!");
 }})
 
 bot.callbackQuery(/^analyze:(.+)$/, async (ctx) => {
-  const path = ctx.match[1];
-  const url = `${process.env.BASE_URL}${path}`;
+  const pathByCategoryId = new Map(devSubcategories.map(c => [c.id, c.path]));
+
+  const id = ctx.match[1];
+  const path = pathByCategoryId.get(id);
+  if (!path) {
+    await ctx.reply('❌ Категория не найдена.');
+    return;
+  }
+  const fullUrl = `${process.env.BASE_URL}${path}`;
+
   await ctx.answerCallbackQuery();
   
   const frames = ['[     ]', '[=    ]', '[==   ]', '[===  ]', '[==== ]', '[=====]'];
@@ -23,7 +32,7 @@ bot.callbackQuery(/^analyze:(.+)$/, async (ctx) => {
   }, 500);
 
   try {
-    const items = await parseAllKworks(url, 10, 1000, 2500);
+    const items = await parseAllKworks(fullUrl, 10, 1000, 2500);
     clearInterval(interval);
     await ctx.api.deleteMessage(animMsg.chat.id, animMsg.message_id).catch(() => {});
     
